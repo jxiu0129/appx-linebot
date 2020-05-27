@@ -1,7 +1,7 @@
-// import line from '@line/bot-sdk';
-const line = require('@line/bot-sdk');
-// import express from 'express';
-const express = require('express');
+import line from '@line/bot-sdk';
+// const line = require('@line/bot-sdk');
+import express from 'express';
+// const express = require('express');
 
 const lineConfig = {
     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
