@@ -16,7 +16,8 @@ app.post('/', line.middleware(lineConfig), (req, res) => {
     .all(req.body.events.map(handleEvent))
     .then((result) => {
         res.json(result);
-    });
+    })
+    .catch((err) => console.log(err));
 });
 
 const handleEvent = (event) => {
@@ -40,5 +41,5 @@ const handleEvent = (event) => {
 
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('App now running on port 3000');
+    console.log(`App now running on port ${process.env.PORT}`);
 });
