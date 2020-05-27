@@ -1,17 +1,15 @@
-import line from '@line/bot-sdk';
-// const line = require('@line/bot-sdk');
+import { Client, middleware } from '@line/bot-sdk';
 import express from 'express';
-// const express = require('express');
 
 const lineConfig = {
-    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-    channelSecret: process.env.CHANNEL_SECRET
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '/Cc+gz2XwOLhUVIjYdVT0Df8d7l1Y5enFdv6BnMX7WyWSNwEaEKuRc5EnwQrTlS9mVFYp4vGoPdEtek62iRsb3k1lMw1UHaPQAEV9lqqeA+janICpbwg88WXE7Vpx+bmn0O2LtMEvTWY98ml3DPqtAdB04t89/1O/w1cDnyilFU=',
+    channelSecret: process.env.CHANNEL_SECRET || 'e8bc3cfb8f1c14340910a6603228ae21'
 };
 
-const client = new line.Client(lineConfig);
+const client = new Client(lineConfig);
 const app = express();
 
-app.post('/', line.middleware(lineConfig), (req, res) => {
+app.post('/', middleware(lineConfig), (req, res) => {
     Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => {
@@ -40,6 +38,7 @@ const handleEvent = (event) => {
   }
 
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`App now running on port ${process.env.PORT}`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`App now running on port ${port}`);
 });
