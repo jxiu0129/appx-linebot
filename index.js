@@ -9,33 +9,59 @@ const lineConfig = {
 const client = new Client(lineConfig);
 const app = express();
 
-app.post('/', middleware(lineConfig), (req, res) => {
-    Promise
-    .all(req.body.events.map(handleEvent))
-    .then((result) => {
+app.post('/', middleware(lineConfig), async (req, res) => {
+    // Promise
+    // .all(req.body.events.map(handleEvent))
+    // .then((result) => {
+    //     res.json(result);
+    // })
+    // .catch((err) => console.log(err));
+    try {
+        let result = await req.body.events.map(handleEvent);
         res.json(result);
-    })
-    .catch((err) => console.log(err));
+    } 
+    catch (err) {
+        console.log(err);
+    }
+
 });
 
-const handleEvent = (event) => {
-    switch (event.type) {
-      case 'join':
-      case 'follow':
-        return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: '你好請問我們認識嗎?'
+const handleEvent = ({type, message, replyToken}) => {
+    switch (type) {
+    case 'join': //加入群組
+    case 'follow': //追蹤
+        return client.replyMessage(replyToken, {
+        type: 'text',
+        text: `感謝您將本帳號加入好友(happy)\n若不想接收提醒，可以點選本畫面右上方的選單圖示，然後關閉「提醒」的設定喔(ok)?`
         });   
-      case 'message':
-        switch (event.message.type) {
-          case 'text':
-            return client.replyMessage(event.replyToken, {
-              type: 'text',
-              text: (event.message.text+'~*')
-            });
+    case 'message': //傳訊息給機器人
+        switch (message.type) {
+        case 'text':
+            textHandler(replyToken, message.text);
+            break;
+        case 'sticker':
+            // do sth with sticker
+            return 
         }
     }
-  }
+}
+
+const textHandler = (replyToken, inputText) => {
+    let resText;
+    switch (inputText) {
+        case '你好':
+            resText = '你好啊';
+            break;
+        case 'test':
+            resText = '測試';
+            break
+    }
+    return client.replyMessage(replyToken, {
+        type: 'text',
+        text: resText
+    });
+
+}
 
 
 const port = process.env.PORT || 3000;
