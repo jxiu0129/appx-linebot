@@ -19,7 +19,7 @@ app.post('/', middleware(lineConfig), async (req, res) => {
     try {
         let result = await req.body.events.map(handleEvent);
         res.json(result);
-    } 
+    }
     catch (err) {
         console.log(err);
     }
