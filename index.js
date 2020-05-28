@@ -23,7 +23,6 @@ app.post('/', middleware(lineConfig), async (req, res) => {
     catch (err) {
         console.log(err);
     }
-
 });
 
 const handleEvent = ({type, message, replyToken}) => {
@@ -55,6 +54,8 @@ const textHandler = (replyToken, inputText) => {
         case 'test':
             resText = '測試';
             break
+        default:
+            resText = '請親臨院所';
     }
     return client.replyMessage(replyToken, {
         type: 'text',
