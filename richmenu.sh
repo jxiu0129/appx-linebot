@@ -1,4 +1,4 @@
-# create rich menu
+# create rich menu -> 可以用postman
 curl -v -X POST https://api.line.me/v2/bot/richmenu \
 -H 'Authorization: Bearer /Cc+gz2XwOLhUVIjYdVT0Df8d7l1Y5enFdv6BnMX7WyWSNwEaEKuRc5EnwQrTlS9mVFYp4vGoPdEtek62iRsb3k1lMw1UHaPQAEV9lqqeA+janICpbwg88WXE7Vpx+bmn0O2LtMEvTWY98ml3DPqtAdB04t89/1O/w1cDnyilFU=' \
 -H 'Content-Type: application/json' \
@@ -60,7 +60,7 @@ curl -v -X POST https://api.line.me/v2/bot/richmenu \
             },
             "action": {
                 "type": "location",
-                "title": "柯滄銘婦產科",
+                "label": "柯滄銘婦產科",
                 "address": "台北市中正區林森南路10號",
                 "latitude": 25.043030000000002,
                 "longitude": 121.52261799999999
@@ -95,61 +95,8 @@ curl -v -X POST https://api.line.me/v2/bot/richmenu \
     ]
 }'
 
-# upload rich menu
-curl -v -X POST https://api-data.line.me/v2/bot/richmenu/richmenu-0aab46d26099e00a86e6ccdf1e78879d/content \
+# upload rich menu  -->不能用postman
+curl -v -X POST https://api-data.line.me/v2/bot/richmenu/richmenu-e860a1adce32a7f48d85e2d3aec2f462/content \
 -H "Authorization: Bearer /Cc+gz2XwOLhUVIjYdVT0Df8d7l1Y5enFdv6BnMX7WyWSNwEaEKuRc5EnwQrTlS9mVFYp4vGoPdEtek62iRsb3k1lMw1UHaPQAEV9lqqeA+janICpbwg88WXE7Vpx+bmn0O2LtMEvTWY98ml3DPqtAdB04t89/1O/w1cDnyilFU=" \
 -H "Content-Type: image/jpeg" \
 -T image/rich_menu_03_L.png
-
-
-
-# image map
-"type": "imagemap",
-"baseUrl": "https://upload.cc/i1/2020/03/04/b0WiTM.png#",
-"altText": "圖文選單",
-"baseSize": {
-    "width": 1040,
-    "height": 1040
-},
-"actions": [
-    {
-        "type": "uri",
-        "linkUri": "http://pei.usa543.com/LineHome/qa.html#1",
-        "area": {
-            "x": 0,
-            "y": 0,
-            "width": 520,
-            "height": 520
-        }
-    },
-    {
-        "type": "uri",
-        "linkUri": "http://pei.usa543.com/LineHome/qa.html#2",
-        "area": {
-            "x": 520,
-            "y": 0,
-            "width": 520,
-            "height": 520
-        }
-    },
-    {
-        "type": "uri",
-        "linkUri": "http://pei.usa543.com/LineHome/qa.html#3",
-        "area": {
-            "x": 0,
-            "y": 520,
-            "width": 520,
-            "height": 520
-        }
-    },
-    {
-        "type": "uri",
-        "linkUri": "http://pei.usa543.com/LineHome/qa.html#4",
-        "area": {
-            "x": 520,
-            "y": 520,
-            "width": 520,
-            "height": 520
-        }
-    }
-]

@@ -1,6 +1,6 @@
 import { Client, middleware } from '@line/bot-sdk';
 import express from 'express';
-import { imageMap } from './template';
+import { imageMap, carousel } from './template';
 
 const lineConfig = {
     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '/Cc+gz2XwOLhUVIjYdVT0Df8d7l1Y5enFdv6BnMX7WyWSNwEaEKuRc5EnwQrTlS9mVFYp4vGoPdEtek62iRsb3k1lMw1UHaPQAEV9lqqeA+janICpbwg88WXE7Vpx+bmn0O2LtMEvTWY98ml3DPqtAdB04t89/1O/w1cDnyilFU=',
@@ -57,6 +57,8 @@ const textHandler = (replyToken, inputText) => {
             break
         case 'Q&A':
             return client.replyMessage(replyToken, imageMap());
+        case 'q&a':
+            return client.replyMessage(replyToken, carousel());
         default:
             resText = '請親臨院所';
     }
