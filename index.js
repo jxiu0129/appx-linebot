@@ -1,4 +1,4 @@
-import { Client, middleware } from '@line/bot-sdk';
+import { Client, middleware, flexSendMessage } from '@line/bot-sdk';
 import express from 'express';
 import { imageMap, carousel } from './template';
 
@@ -47,25 +47,29 @@ const handleEvent = ({type, message, replyToken}) => {
 }
 
 const textHandler = (replyToken, inputText) => {
-    let resText;
-    switch (inputText) {
-        case '你好':
-            resText = '你好啊';
-            break;
-        case 'test':
-            resText = '測試';
-            break
-        case 'Q&A':
-            return client.replyMessage(replyToken, imageMap());
-        case 'q&a':
-            return client.replyMessage(replyToken, carousel());
-        default:
-            resText = '請親臨院所';
+    try{
+        let resText;
+        switch (inputText) {
+            case '你好':
+                resText = '你好啊';
+                break;
+            case 'test':
+                resText = '測試';
+                break
+            case 'Q&A':
+                return client.replyMessage(replyToken, imageMap());
+            case 'q&a':
+                return client.replyMessage(replyToken, carousel());
+            default:
+                resText = '請親臨院所';
+        }
+        return client.replyMessage(replyToken, {
+            type: 'text',
+            text: resText
+        });
+    } catch (err) {
+        console.log(err)
     }
-    return client.replyMessage(replyToken, {
-        type: 'text',
-        text: resText
-    });
 
 }
 
