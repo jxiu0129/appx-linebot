@@ -1,4 +1,4 @@
-import { Client, middleware, flexSendMessage } from '@line/bot-sdk';
+import { Client, middleware } from '@line/bot-sdk';
 import express from 'express';
 import { imageMap, carousel } from './template';
 
@@ -18,6 +18,9 @@ app.post('/', middleware(lineConfig), async (req, res) => {
     // })
     // .catch((err) => console.log(err));
     try {
+        console.log(`req.body: ${req.body}`);
+        console.log(`req.body.events: ${req.body.events}`);
+        console.log(`req.body.destination: ${req.body.destination}`);
         let result = await req.body.events.map(handleEvent);
         res.json(result);
     }
