@@ -24,9 +24,9 @@ app.post('/', middleware(lineConfig), async (req, res) => {
             "events": [
                 {
                     "type": "message",
-                    "replyToken": "20d2195fee994542b3db950b6150d7de",
+                    "replyToken": "uuidhere",
                     "source": {
-                        "userId": "U8e5c5d1173327f5c016a99f9faf44037",
+                        "userId": "xxxx"",
                         "type": "user"
                     },
                     "timestamp": 1592813446208,
@@ -45,9 +45,9 @@ app.post('/', middleware(lineConfig), async (req, res) => {
             userName = profile.displayName;
             userPictureUrl = profile.pictureUrl;
             /*{ 實驗getProfile
-                userId: 'U8e5c5d1173327f5c016a99f9faf44037',
+                userId: 'uuid here',
                 displayName: '杰修',
-                pictureUrl: 'https://profile.line-scdn.net/0hXbG_Of5tB016Ji82aLR4GkZjCSANCAEFAkFIfAsvUHQDRUUcT0lBLV8hCyhQQhdJERIceQ8jXi4A',
+                pictureUrl: 'https://profile.line-scdn.net/xxx',
                 statusMessage: '(robber)(dumpling)',
                 language: 'en' 
             }*/
